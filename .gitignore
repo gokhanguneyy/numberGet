@@ -1,0 +1,34 @@
+# Build klasörleri
+bin/
+obj/
+out/
+
+# Paketler
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+# Kullanıcı ayarları ve loglar
+*.user
+*.suo
+*.pdb
+*.log
+*.cache
+*.csproj.user
+*.csproj.DotSettings
+
+# IDE ve sistem dosyaları
+.vs/
+.idea/
+*.sln.iml
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Konfigürasyon dosyaları (Gizli bilgileri paylaşmamak için)
+appsettings.json
+appsettings.Development.json
+
+# Docker
+docker-compose.override.yml

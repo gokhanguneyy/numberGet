@@ -26,9 +26,7 @@ packages/
 Thumbs.db
 desktop.ini
 
-# Konfigürasyon dosyaları (Gizli bilgileri paylaşmamak için)
-appsettings.json
-appsettings.Development.json
+
 
 # Docker
 docker-compose.override.yml

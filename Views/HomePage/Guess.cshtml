@@ -1,0 +1,24 @@
+﻿@model numberGet.Models.GameModels.GameModel
+
+<h2>Sayı Tahmin Oyunu</h2>
+<p>Seçilen Mod: @Model.SelectedLevel</p>
+<p>Kalan Hak: <strong>@Model.RemainingAttempts</strong></p>
+
+@if (!Model.IsGameOver)
+{
+    <form method="post">
+        <label>Tahmininiz:</label>
+        <input type="number" name="UserGuess" class="form-control" required />
+        <button type="submit" class="btn btn-primary mt-2">Tahmin Et</button>
+    </form>
+}
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <p class="mt-3 alert alert-info">@Model.Message</p>
+}
+
+@if (Model.IsGameOver)
+{
+    <a href="@Url.Action("Index", "HomePage")" class="btn btn-success mt-3">Yeniden Oyna</a>
+}

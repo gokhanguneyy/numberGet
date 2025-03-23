@@ -8,18 +8,32 @@ namespace numberGet.Controllers
 {
     public class HomePageController : Controller
     {
-        private static int SecretNumber;
-        private static int RemainingAttempts=10;
-        private static GameLevelsEnum SelectedLevel;
-
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Home()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Index(BeforeStartingGameModel gameLevel)
+        public IActionResult FromHomeToGameLevel()
+        {
+            return RedirectToAction("GameLevel", "HomePage");
+        }
+
+
+
+        private static int SecretNumber;
+        private static int RemainingAttempts=10;
+        private static GameLevelsEnum SelectedLevel;
+
+        [HttpGet]
+        public IActionResult GameLevel()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult GameLevel(BeforeStartingGameModel gameLevel)
         {
             string gameLevelValue = gameLevel.GameDifficultyLevel;
             Enum.TryParse(typeof(GameLevelsEnum), gameLevelValue, true, out object result);

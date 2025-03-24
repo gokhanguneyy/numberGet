@@ -48,15 +48,16 @@
                 <input type="password" class="form-control" id="password" name="password" placeholder="Şifrenizi girin" required>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">Giriş Yap</button>
+            <button type="submit" onclick="showMessage()" class="btn btn-primary w-100">Giriş Yap</button>
         </form>
 
         <div class="mt-3">
-            <a href="/Home/ForgotPassword">Şifrenizi mi unuttunuz?</a>
+            @* <a href="/Home/ForgotPassword" onclick="showMessage()">Şifrenizi mi unuttunuz?</a> *@
+            <a href="" onclick="showMessage()">Şifrenizi mi unuttunuz?</a>
         </div>
 
         <div class="mt-2">
-            <a href="/Home/Register">Hesabınız yok mu? Kayıt Ol</a>
+            <a href="" onclick="showMessage()">Hesabınız yok mu? Kayıt Ol</a>
         </div>
 
         <form method="post" action="/HomePage/FromHomeToGameLevel">
@@ -68,3 +69,9 @@
 
 </body>
 </html>
+
+<script>
+    function showMessage(){
+        alert("YOU CAN JUST PLAY GUEST MODE");
+    }
+</script>

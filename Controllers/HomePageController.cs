@@ -15,7 +15,7 @@ namespace numberGet.Controllers
         }
 
         [HttpPost]
-        public IActionResult FromHomeToGameLevel()
+        public  IActionResult FromHomeToGameLevel()
         {
             return RedirectToAction("GameLevel", "HomePage");
         }
@@ -23,7 +23,7 @@ namespace numberGet.Controllers
 
 
         private static int SecretNumber;
-        private static int RemainingAttempts=10;
+        private static int RemainingAttempts;
         private static GameLevelsEnum SelectedLevel;
 
         [HttpGet]
@@ -46,6 +46,7 @@ namespace numberGet.Controllers
         [HttpGet]
         public IActionResult Guess()
         {
+            RemainingAttempts = 10;
             var model = new GameModel
             {
                 RemainingAttempts = RemainingAttempts,

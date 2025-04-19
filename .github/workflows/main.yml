@@ -32,6 +32,6 @@ jobs:
     - name: Deployment
       uses: azure/webapps-deploy@v2
       with: 
-        app-name: numberGuess
+        app-name: numberGuessGame
         publish-profile: ${{secrets.AZURE_PUBLISH_PROFILE}}
         package: './publish'

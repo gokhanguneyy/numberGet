@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using numberGet.Data.Entities;
 using numberGet.Models;
 
 namespace numberGet.Context
@@ -10,5 +11,6 @@ namespace numberGet.Context
         }
 
         public DbSet<Todo>  Todos  { get; set; }
+        public DbSet<GuneyPersonEntity> GuneyPerson {  get; set; }
     }
 }

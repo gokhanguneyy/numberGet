@@ -1,13 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using numberGet.Data;
+using numberGet.Data.Entities;
 using numberGet.Enums;
+using numberGet.Models;
 using numberGet.Models.GameModels;
 using numberGet.Models.HomePageModels;
 using System;
+using System.Threading.Tasks;
 
 namespace numberGet.Controllers
 {
     public class HomePageController : Controller
     {
+        private readonly IRepository<GuneyPersonEntity> _guneyPersonRepository;
+
+        public HomePageController(IRepository<GuneyPersonEntity> guneyPersonRepository)
+        {
+            _guneyPersonRepository = guneyPersonRepository;
+        }
+
         [HttpGet]
         public IActionResult Home()
         {
@@ -15,9 +26,31 @@ namespace numberGet.Controllers
         }
 
         [HttpPost]
-        public  IActionResult FromHomeToGameLevel()
+        public  async Task<IActionResult> FromHomeToGameLevel()
         {
             return RedirectToAction("GameLevel", "HomePage");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> FromHomeToRegisterPage()
+        {
+            return RedirectToAction("SignUp", "HomePage");
+        }
+
+        [HttpGet]
+        public IActionResult SignUp()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SignUp(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            return RedirectToAction("Home");
         }
 
 

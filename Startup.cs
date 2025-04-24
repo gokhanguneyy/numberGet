@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +12,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using numberGet.Context;
+using numberGet.Data;
+using numberGet.FluentValidation;
+using numberGet.Models;
 
 namespace numberGet
 {
@@ -32,6 +37,16 @@ namespace numberGet
             });
 
             services.AddControllersWithViews();
+
+            services.AddFluentValidationAutoValidation();
+            services.AddFluentValidationClientsideAdapters();
+
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IValidator<RegisterViewModel>, RegisterValidation>();
+
+
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

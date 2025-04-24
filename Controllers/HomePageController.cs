@@ -13,12 +13,10 @@ namespace numberGet.Controllers
 {
     public class HomePageController : Controller
     {
-        private readonly IRepository<GuneyPersonEntity> _guneyPersonRepository;
         private readonly IRepository<SignUpEntity> _signUpEntity;
 
-        public HomePageController(IRepository<GuneyPersonEntity> guneyPersonRepository, IRepository<SignUpEntity> signUpEntity)
+        public HomePageController(IRepository<SignUpEntity> signUpEntity)
         {
-            _guneyPersonRepository = guneyPersonRepository;
             _signUpEntity = signUpEntity;
         }
 
@@ -34,13 +32,13 @@ namespace numberGet.Controllers
         }
 
         [HttpPost]
-        public  async Task<IActionResult> FromHomeToGameLevel()
+        public  IActionResult FromHomeToGameLevel()
         {
             return RedirectToAction("GameLevel", "HomePage");
         }
 
         [HttpGet]
-        public async Task<IActionResult> FromHomeToRegisterPage()
+        public IActionResult FromHomeToRegisterPage()
         {
             return RedirectToAction("SignUp", "HomePage");
         }

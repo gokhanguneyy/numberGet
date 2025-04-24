@@ -9,9 +9,6 @@ namespace numberGet.Context
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
-
-        public DbSet<Todo>  Todos  { get; set; }
-        public DbSet<GuneyPersonEntity> GuneyPerson {  get; set; }
         public DbSet<SignUpEntity> SignUps { get; set; }
     }
 }

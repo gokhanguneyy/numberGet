@@ -1,6 +1,8 @@
-﻿namespace numberGet.Models
+﻿using numberGet.Data;
+
+namespace numberGet.Models
 {
-    public class RegisterViewModel
+    public class RegisterViewModel : BaseEntity
     {
         public string Name { get; set; }
         public string Surname { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using numberGet.Data;
 using numberGet.Data.Entities;
 using numberGet.Enums;
@@ -13,16 +14,23 @@ namespace numberGet.Controllers
     public class HomePageController : Controller
     {
         private readonly IRepository<GuneyPersonEntity> _guneyPersonRepository;
+        private readonly IRepository<SignUpEntity> _signUpEntity;
 
-        public HomePageController(IRepository<GuneyPersonEntity> guneyPersonRepository)
+        public HomePageController(IRepository<GuneyPersonEntity> guneyPersonRepository, IRepository<SignUpEntity> signUpEntity)
         {
             _guneyPersonRepository = guneyPersonRepository;
+            _signUpEntity = signUpEntity;
         }
 
         [HttpGet]
-        public IActionResult Home()
+        public IActionResult Home(string errorMessage = null)
         {
+            if (errorMessage != null)
+            {
+                ViewData["signUpMessage"] = errorMessage;
+            }
             return View();
+
         }
 
         [HttpPost]
@@ -50,7 +58,28 @@ namespace numberGet.Controllers
             {
                 return View(model);
             }
-            return RedirectToAction("Home");
+
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
+            var hashedConfirmPassword = BCrypt.Net.BCrypt.HashPassword(model.ConfirmPassword);
+
+
+            var registerModel = new SignUpEntity
+            {
+                Name = model.Name,
+                Surname = model.Surname,
+                UserName = model.UserName,
+                Email = model.Email,
+                Password = hashedPassword,
+                ConfirmPassword = hashedConfirmPassword,
+                CreatedTime = DateTime.Now,
+            };
+
+            var result = await _signUpEntity.Add(registerModel);
+            if(!result)
+                return View(model);
+            // bir tane hata sayfası oluştur   
+
+            return RedirectToAction("Home", new { errorMessage = "Kayıt başarısız!" });
         }
 
 

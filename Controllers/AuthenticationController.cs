@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using numberGet.Data.Entities;
 using System.Threading.Tasks;
-using numberGet.Data;
-using numberGet.Factories.SignUpFactory;
 using numberGet.Services.Authentication;
 using numberGet.Models.AuthenticationModels;
 
@@ -10,14 +7,10 @@ namespace numberGet.Controllers
 {
     public class AuthenticationController : Controller
     {
-        private readonly IRepository<SignUpEntity> _signUpEntity;
-        private readonly IAuthenticationFactory _signUpFactory;
-        private readonly IAuthenticationService _authenticationService;
+        private readonly IAuthenticationServices _authenticationService;
 
-        public AuthenticationController(IRepository<SignUpEntity> signUpEntity, IAuthenticationFactory signUpFactory, IAuthenticationService authenticationService)
+        public AuthenticationController(IAuthenticationServices authenticationService)
         {
-            _signUpEntity = signUpEntity;
-            _signUpFactory = signUpFactory;
             _authenticationService = authenticationService;
         }
 

@@ -1,18 +1,19 @@
-﻿using numberGet.Data.Entities;
+﻿using Microsoft.Extensions.DependencyInjection;
+using numberGet.Data.Entities;
 using numberGet.Models.AuthenticationModels;
 using numberGet.Services.Authentication;
 using System;
 using System.Threading.Tasks;
 
-namespace numberGet.Factories.SignUpFactory
+namespace numberGet.Factories.Authentication
 {
     public class AuthenticationFactory : IAuthenticationFactory
     {
-        private readonly IAuthenticationService _authenticationService;
+        private readonly IServiceProvider _serviceProvider;
 
-        public AuthenticationFactory(IAuthenticationService authenticationService)
+        public AuthenticationFactory(IServiceProvider serviceProvider)
         {
-            _authenticationService = authenticationService;
+            _serviceProvider = serviceProvider;
         }
 
         public Task<string> DecryptPasswordFactory(string encryptPassword)
@@ -36,8 +37,9 @@ namespace numberGet.Factories.SignUpFactory
 
         public async Task<SignUpEntity> SignUpModelFactory(SignUpViewModel model)
         {
-            var anyEmail = await _authenticationService.AnyEmail(model.Email);
-            var anyNickName = await _authenticationService.AnyNickName(model.UserName);
+            var authenticationService = _serviceProvider.GetRequiredService<IAuthenticationServices>();
+            var anyEmail = await authenticationService.AnyEmail(model.Email);
+            var anyNickName = await authenticationService.AnyNickName(model.UserName);
             if((anyEmail == false)&&(anyNickName == false))
             {
                 var hashedPassword = await EncryptPasswordFactory(model.Password);

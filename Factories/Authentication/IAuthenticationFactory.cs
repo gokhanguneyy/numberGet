@@ -2,7 +2,7 @@
 using numberGet.Models.AuthenticationModels;
 using System.Threading.Tasks;
 
-namespace numberGet.Factories.SignUpFactory
+namespace numberGet.Factories.Authentication
 {
     public interface IAuthenticationFactory
     {

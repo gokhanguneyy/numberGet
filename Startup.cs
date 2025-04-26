@@ -1,22 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using numberGet.Context;
 using numberGet.Data;
-using numberGet.Factories.SignUpFactory;
+using numberGet.Factories.Authentication;
 using numberGet.FluentValidation;
 using numberGet.Models.AuthenticationModels;
+using numberGet.Services.Authentication;
 
 namespace numberGet
 {
@@ -47,9 +42,7 @@ namespace numberGet
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IValidator<SignUpViewModel>, RegisterValidation>();
             services.AddScoped<IAuthenticationFactory, AuthenticationFactory>();
-            services.AddScoped<IAuthenticationService, AuthenticationService>();
-
-           
+            services.AddScoped<IAuthenticationServices, AuthenticationServices>();           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

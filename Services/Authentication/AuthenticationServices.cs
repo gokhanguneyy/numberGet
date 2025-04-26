@@ -1,17 +1,17 @@
 ﻿using numberGet.Data;
 using numberGet.Data.Entities;
-using numberGet.Factories.SignUpFactory;
+using numberGet.Factories.Authentication;
 using numberGet.Models.AuthenticationModels;
 using System.Threading.Tasks;
 
 namespace numberGet.Services.Authentication
 {
-    public class AuthenticationService : IAuthenticationService
+    public class AuthenticationServices : IAuthenticationServices
     {
         private readonly IAuthenticationFactory _authenticationFactory;
         private readonly IRepository<SignUpEntity> _signUpRepository;
 
-        public AuthenticationService(IRepository<SignUpEntity> signUpRepository, IAuthenticationFactory authenticationFactory)
+        public AuthenticationServices(IRepository<SignUpEntity> signUpRepository, IAuthenticationFactory authenticationFactory)
         {
             _signUpRepository = signUpRepository;
             _authenticationFactory = authenticationFactory;

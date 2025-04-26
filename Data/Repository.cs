@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using numberGet.Context;
+using System;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace numberGet.Data
@@ -22,24 +24,11 @@ namespace numberGet.Data
             if(result <=0)
                 return false;
             return true;
+        }
 
-
-
-
-            // bu kontrolü servis katmanında yapmamız gerekir diye düşünüyorum.
-            /*
-            if(entity != null)
-            {
-                _dbSet.Add(entity);
-                var result = await _context.SaveChangesAsync();
-                if(result <= 0)
-                {
-                    return false;   
-                }
-                return true;
-            }
-            return false;
-            */
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
+        {
+            return await _dbSet.AnyAsync(expression);
         }
     }
 }

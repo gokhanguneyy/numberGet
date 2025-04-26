@@ -17,12 +17,31 @@ namespace numberGet.Services.Authentication
             _authenticationFactory = authenticationFactory;
         }
 
+        public async Task<bool> AnyEmail(string email)
+        {
+            var anyEmail = await _signUpRepository.AnyAsync(x=>x.Email == email);
+            return anyEmail;
+        }
+        public async Task<bool> AnyNickName(string nickName)
+        {
+            var anyNickName = await _signUpRepository.AnyAsync(x=>x.UserName == nickName);
+            return anyNickName;
+        }
+
         public async Task<string> SignUpAddAsync(SignUpViewModel signUpViewModel)
         {
             var signUpModel = await _authenticationFactory.SignUpModelFactory(signUpViewModel);
-            var signUpResult = await _signUpRepository.Add(signUpModel);
-            var signUpResultMessage = await _authenticationFactory.SignUpErrorMessageFactory(signUpResult);    
-            return signUpResultMessage;
+            if(signUpModel != null)
+            {
+                var signUpResult = await _signUpRepository.Add(signUpModel);
+                var signUpResultMessage = await _authenticationFactory.SignUpErrorMessageFactory(signUpResult);
+                return signUpResultMessage;
+            }
+            else
+            {
+                return "LÜTFEN KENDİ VERİLERİNİZİ GİRİNİZ";
+            }
+
         }
     }
 }

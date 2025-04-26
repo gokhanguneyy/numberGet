@@ -28,7 +28,7 @@ namespace numberGet.Controllers
                 return View(model);
             }
             var signUpResult = await _authenticationService.SignUpAddAsync(model);
-            return RedirectToAction("Home", "HomePage", new { signUpResult });
+            return RedirectToAction("Home", "HomePage", new { errorMessage = signUpResult });
         }
     }
 }

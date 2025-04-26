@@ -60,8 +60,7 @@ namespace numberGet.Factories.Authentication
             }
             else
             {
-                var emptyModel = new SignUpEntity();
-                return await Task.FromResult(emptyModel);
+                return null;
             }           
         }
     }

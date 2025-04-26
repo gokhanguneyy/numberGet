@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,8 +14,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using numberGet.Context;
 using numberGet.Data;
+using numberGet.Factories.SignUpFactory;
 using numberGet.FluentValidation;
-using numberGet.Models;
+using numberGet.Models.AuthenticationModels;
 
 namespace numberGet
 {
@@ -43,8 +45,9 @@ namespace numberGet
 
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddScoped<IValidator<RegisterViewModel>, RegisterValidation>();
-
+            services.AddScoped<IValidator<SignUpViewModel>, RegisterValidation>();
+            services.AddScoped<IAuthenticationFactory, AuthenticationFactory>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
 
            
         }

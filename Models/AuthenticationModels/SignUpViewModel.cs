@@ -1,8 +1,8 @@
 ﻿using numberGet.Data;
 
-namespace numberGet.Models
+namespace numberGet.Models.AuthenticationModels
 {
-    public class RegisterViewModel : BaseEntity
+    public class SignUpViewModel : BaseEntity
     {
         public string Name { get; set; }
         public string Surname { get; set; }

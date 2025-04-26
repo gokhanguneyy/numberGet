@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using numberGet.Models;
+using numberGet.Models.AuthenticationModels;
 
 namespace numberGet.FluentValidation
 {
-    public class RegisterValidation : AbstractValidator<RegisterViewModel>
+    public class RegisterValidation : AbstractValidator<SignUpViewModel>
     {
         public RegisterValidation()
         {

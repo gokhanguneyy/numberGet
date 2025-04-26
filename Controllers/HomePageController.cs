@@ -1,25 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
-using numberGet.Data;
-using numberGet.Data.Entities;
 using numberGet.Enums;
-using numberGet.Models;
 using numberGet.Models.GameModels;
 using numberGet.Models.HomePageModels;
 using System;
-using System.Threading.Tasks;
 
 namespace numberGet.Controllers
 {
     public class HomePageController : Controller
     {
-        private readonly IRepository<SignUpEntity> _signUpEntity;
-
-        public HomePageController(IRepository<SignUpEntity> signUpEntity)
-        {
-            _signUpEntity = signUpEntity;
-        }
-
         [HttpGet]
         public IActionResult Home(string errorMessage = null)
         {
@@ -28,60 +16,25 @@ namespace numberGet.Controllers
                 ViewData["signUpMessage"] = errorMessage;
             }
             return View();
-
         }
 
+        [HttpGet]
+        public IActionResult GoRegisterPage()
+        {
+            return RedirectToAction("SignUp", "Authentication");
+        }
+
+        
+        
+        
+        
         [HttpPost]
         public  IActionResult FromHomeToGameLevel()
         {
             return RedirectToAction("GameLevel", "HomePage");
         }
 
-        [HttpGet]
-        public IActionResult FromHomeToRegisterPage()
-        {
-            return RedirectToAction("SignUp", "HomePage");
-        }
-
-        [HttpGet]
-        public IActionResult SignUp()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> SignUp(RegisterViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
-            var hashedConfirmPassword = BCrypt.Net.BCrypt.HashPassword(model.ConfirmPassword);
-
-
-            var registerModel = new SignUpEntity
-            {
-                Name = model.Name,
-                Surname = model.Surname,
-                UserName = model.UserName,
-                Email = model.Email,
-                Password = hashedPassword,
-                ConfirmPassword = hashedConfirmPassword,
-                CreatedTime = DateTime.Now,
-            };
-
-            var result = await _signUpEntity.Add(registerModel);
-            if(!result)
-                return View(model);
-            // bir tane hata sayfası oluştur   
-
-            return RedirectToAction("Home", new { errorMessage = "Kayıt başarısız!" });
-        }
-
-
-
+        
         private static int SecretNumber;
         private static int RemainingAttempts;
         private static GameLevelsEnum SelectedLevel;

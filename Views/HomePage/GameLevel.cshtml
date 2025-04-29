@@ -64,16 +64,16 @@
 
         <form asp-action="GameLevel" asp-controller="HomePage" method="post">
             <div class="mb-3">
-                <label asp-for="GameDifficultyLevel" class="form-label"><strong>Zorluk Seviyesini Seçiniz</strong></label>
+                <label asp-for="GameDifficultyLevel" class="form-label"><strong>Select Difficulty Level</strong></label>
                 <select asp-for="GameDifficultyLevel" class="form-select" required>
-                    <option selected disabled>Seçiniz</option>
+                    <option selected disabled>Select</option>
                     <option value="EASY">EASY</option>
                     <option value="MEDIUM">MEDIUM</option>
                     <option value="HARD">HARD</option>
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">Oyuna Başla</button>
+            <button type="submit" class="btn btn-primary w-100">Start Game</button>
         </form>
     </div>
 

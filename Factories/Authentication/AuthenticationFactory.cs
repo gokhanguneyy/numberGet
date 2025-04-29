@@ -30,9 +30,9 @@ namespace numberGet.Factories.Authentication
         public async Task<string> SignUpErrorMessageFactory(bool signUpResult)
         {
             if (signUpResult)
-                return "KAYIT BAŞARILI. LÜTFEN GİRİŞ YAPINIZ";
+                return "REGISTRATION SUCCESSFUL. PLEASE LOG IN";
             else
-                return "KAYIT BAŞARISIZ. LÜTFEN TEKRAR DENEYİNİZ";
+                return "REGISTRATION FAILED. PLEASE TRY AGAIN";
         }
 
         public async Task<SignUpEntity> SignUpModelFactory(SignUpViewModel model)

@@ -3,6 +3,8 @@ using numberGet.Data;
 using numberGet.Data.Entities;
 using numberGet.Factories.Authentication;
 using numberGet.Models.AuthenticationModels;
+using System.Diagnostics.Metrics;
+using System.Numerics;
 using System.Threading.Tasks;
 
 namespace numberGet.Services.Authentication
@@ -40,7 +42,7 @@ namespace numberGet.Services.Authentication
             }
             else
             {
-                return "LÜTFEN KENDİ VERİLERİNİZİ GİRİNİZ";
+                return "PLEASE ENTER YOUR OWN INFORMATION";
             }
 
         }

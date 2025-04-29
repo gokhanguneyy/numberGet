@@ -33,19 +33,19 @@
 <body>
 
     <div class="game-container">
-        <h2 class="mb-3">Sayı Tahmin Oyunu</h2>
-        <p class="fw-bold">Seçilen Mod: <span class="text-primary">@Model.SelectedLevel</span></p>
-        <p class="fw-bold">Kalan Hak: <span class="text-danger">@Model.RemainingAttempts</span></p>
+        <h2 class="mb-3">Number Guess Game</h2>
+        <p class="fw-bold">Selected Mode: <span class="text-primary">@Model.SelectedLevel</span></p>
+        <p class="fw-bold">Remaining Attempts: <span class="text-danger">@Model.RemainingAttempts</span></p>
 
         @if (!Model.IsGameOver)
         {
             <form method="post">
                 <div class="mb-3">
-                    <label for="guess" class="form-label">Tahmininiz:</label>
-                    <input type="number" id="guess" name="UserGuess" class="form-control" placeholder="Bir sayı girin" required>
+                    <label for="guess" class="form-label">Your Guess:</label>
+                    <input type="number" id="guess" name="UserGuess" class="form-control" placeholder="Enter a number" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">Tahmin Et</button>
+                <button type="submit" class="btn btn-primary w-100">Submit Guess</button>
             </form>
         }
 
@@ -56,7 +56,7 @@
 
         @if (Model.IsGameOver)
         {
-            <a href="@Url.Action("Home", "HomePage")" class="btn btn-success w-100 mt-3">Yeniden Oyna</a>
+            <a href="@Url.Action("Home", "HomePage")" class="btn btn-success w-100 mt-3">Play Again</a>
         }
     </div>
 

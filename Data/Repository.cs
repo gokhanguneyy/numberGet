@@ -30,5 +30,10 @@ namespace numberGet.Data
         {
             return await _dbSet.AnyAsync(expression);
         }
+
+        public async Task<T> GetUserByExpressionAsync(Expression<Func<T, bool>> expression)
+        {
+            return await _dbSet.SingleOrDefaultAsync(expression);
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace numberGet.Factories.Authentication
     {
         Task<SignUpEntity> SignUpModelFactory(SignUpViewModel model);
         Task<string> EncryptPasswordFactory(string password);
-        Task<string> DecryptPasswordFactory(string encryptPassword);
+        Task<bool> DecryptPasswordFactory(string signInPassword, string encryptPassword);
         Task<string> SignUpErrorMessageFactory(bool signUpResult);
     }
 }

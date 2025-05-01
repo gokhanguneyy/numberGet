@@ -16,9 +16,10 @@ namespace numberGet.Factories.Authentication
             _serviceProvider = serviceProvider;
         }
 
-        public Task<string> DecryptPasswordFactory(string encryptPassword)
+        public async Task<bool> DecryptPasswordFactory(string signInPassword, string encryptPassword)
         {
-            throw new NotImplementedException();
+            var result = BCrypt.Net.BCrypt.Verify(signInPassword, encryptPassword);
+            return result;
         }
 
         public Task<string> EncryptPasswordFactory(string password)

@@ -40,7 +40,7 @@ namespace numberGet.Controllers
         private static GameLevelsEnum SelectedLevel;
 
         [HttpGet]
-        public IActionResult GameLevel()
+        public IActionResult GameLevel(int? userId = null)
         {
             return View();
         }

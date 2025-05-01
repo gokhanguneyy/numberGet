@@ -31,6 +31,12 @@ namespace numberGet.Services.Authentication
             return anyNickName;
         }
 
+        public async Task<SignUpEntity> GetUserByEmail(string email)
+        {
+            var result = await _signUpRepository.GetUserByExpressionAsync(u => u.Email == email);
+            return result;
+        }
+
         public async Task<string> SignUpAddAsync(SignUpViewModel signUpViewModel)
         {
             var signUpModel = await _authenticationFactory.SignUpModelFactory(signUpViewModel);

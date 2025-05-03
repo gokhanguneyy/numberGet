@@ -62,7 +62,9 @@
     <div class="game-container">
         <h2 class="mb-4">WELCOME TO THE NUMBER GUESS GAME</h2>
 
-        <form asp-action="GameLevel" asp-controller="HomePage" method="post">
+        <form asp-action="Guess" asp-controller="Game" method="get">
+            <input type="hidden" asp-for="UserId" />
+            <input type="hidden" asp-for="UserNickName" />
             <div class="mb-3">
                 <label asp-for="GameDifficultyLevel" class="form-label"><strong>Select Difficulty Level</strong></label>
                 <select asp-for="GameDifficultyLevel" class="form-select" required>

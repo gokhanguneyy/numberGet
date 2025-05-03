@@ -49,7 +49,7 @@
         <h2 class="mb-4">WELCOME TO THE NUMBER GUESS GAME</h2>
         <h4>LOGIN</h4>
 
-        <form method="post" action="/HomePage/SignIn">
+        <form method="post" action="/Authentication/SignIn">
             <div class="mb-3">
                 <label for="email" class="form-label">E-Mail</label>
                 <input type="email" class="form-control" id="email" name="Email" placeholder="Enter your email" required>
@@ -75,7 +75,7 @@
         @* </form>  *@
         
 
-        <form method="post" action="/HomePage/FromHomeToGameLevel">
+        <form method="get" action="/Game/GameLevel">
             <div class="mt-4">
                 <button class="btn btn-secondary guest-btn w-100">Play As Guest</button>
             </div>
@@ -88,24 +88,5 @@
 <script>
     function showMessage(){
         alert("YOU CAN JUST PLAY GUEST MODE");
-    }
-
-
-    
-    var message = '@TempData["signUpMessage"]';
-    if(message){
-        function signUpMessages() {
-             console.log(message);
-                 alert(message);
-
-            
-
-             console.log("merhaba");
-         }
-
-          window.onload = signUpMessages;
-    }
-     
-
-     
+    }     
 </script>

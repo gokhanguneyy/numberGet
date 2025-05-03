@@ -12,6 +12,7 @@ using numberGet.Factories.Authentication;
 using numberGet.FluentValidation;
 using numberGet.Models.AuthenticationModels;
 using numberGet.Services.Authentication;
+using numberGet.Services.Game;
 
 namespace numberGet
 {
@@ -42,7 +43,8 @@ namespace numberGet
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IValidator<SignUpViewModel>, RegisterValidation>();
             services.AddScoped<IAuthenticationFactory, AuthenticationFactory>();
-            services.AddScoped<IAuthenticationServices, AuthenticationServices>();           
+            services.AddScoped<IAuthenticationServices, AuthenticationServices>();     
+            services.AddScoped<IGameServices, GameServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -4,6 +4,7 @@ using numberGet.Services.Authentication;
 using numberGet.Models.AuthenticationModels;
 using numberGet.Factories.Authentication;
 using numberGet.Data.Entities;
+using numberGet.Data;
 
 namespace numberGet.Controllers
 {
@@ -58,7 +59,7 @@ namespace numberGet.Controllers
             bool result = await _authenticationFactory.DecryptPasswordFactory(signInModel.Password, user.Password);
             if (result)
             {
-                return View(); // Giriş başarılı durumu oluyor. GoToTheGameDifficultyLevel
+                return RedirectToAction("GameLevel", "Game", new {userId = user.Id}); 
             }
             else
             {

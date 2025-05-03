@@ -35,5 +35,10 @@ namespace numberGet.Data
         {
             return await _dbSet.SingleOrDefaultAsync(expression);
         }
+
+        public async Task<T> GetUserById(int id)
+        {
+            return await _dbSet.FindAsync(id);
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace numberGet.Data
         Task<bool> Add(T entity);
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
         Task<T> GetUserByExpressionAsync(Expression<Func<T, bool>> expression);
+        Task<T> GetUserById(int id);    
     }
 }

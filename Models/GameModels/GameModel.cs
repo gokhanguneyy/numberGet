@@ -4,6 +4,7 @@ namespace numberGet.Models.GameModels
 {
     public class GameModel
     {
+        public int Score { get; set; }
         public int? UserGuess { get; set; }
         public string Message { get; set; } = string.Empty;
         public int RemainingAttempts { get; set; }

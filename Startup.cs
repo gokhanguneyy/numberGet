@@ -13,6 +13,7 @@ using numberGet.FluentValidation;
 using numberGet.Models.AuthenticationModels;
 using numberGet.Services.Authentication;
 using numberGet.Services.Game;
+using System;
 
 namespace numberGet
 {
@@ -39,7 +40,10 @@ namespace numberGet
             services.AddFluentValidationAutoValidation();
             services.AddFluentValidationClientsideAdapters();
 
-
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);
+            });
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IValidator<SignUpViewModel>, RegisterValidation>();
             services.AddScoped<IAuthenticationFactory, AuthenticationFactory>();
@@ -70,7 +74,7 @@ namespace numberGet
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

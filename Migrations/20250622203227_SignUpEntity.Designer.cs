@@ -12,8 +12,8 @@ using numberGet.Context;
 namespace numberGet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250424145356_SignUps")]
-    partial class SignUps
+    [Migration("20250622203227_SignUpEntity")]
+    partial class SignUpEntity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,25 +24,6 @@ namespace numberGet.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("numberGet.Data.Entities.GuneyPersonEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("GuneyPerson");
-                });
 
             modelBuilder.Entity("numberGet.Data.Entities.SignUpEntity", b =>
                 {
@@ -76,22 +57,6 @@ namespace numberGet.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SignUps");
-                });
-
-            modelBuilder.Entity("numberGet.Models.Todo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Todos");
                 });
 #pragma warning restore 612, 618
         }

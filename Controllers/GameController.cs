@@ -42,24 +42,12 @@ namespace numberGet.Controllers
             Enum.TryParse(typeof(GameLevelsEnum), beforeStartingGameModel.GameDifficultyLevel, true, out object result);
             var userTryCount = (int)result;
 
-            int secretNumber = 0;
-            switch ((GameLevelsEnum)result)
-            {
-                case GameLevelsEnum.EASY:
-                    secretNumber = new Random().Next(1, 11);
-                    break;
-                case GameLevelsEnum.MEDIUM:
-                    secretNumber = new Random().Next(1, 51);
-                    break;
-                case GameLevelsEnum.HARD:
-                    secretNumber = new Random().Next(1, 101);
-                    break;
-            }
+            int secretNumber = await _gameServices.DetermineSecretNumber(result);
 
             HttpContext.Session.SetInt32("SecretNumber", secretNumber);
             HttpContext.Session.SetInt32("RemainingAttempts", userTryCount);
             HttpContext.Session.SetString("SelectedLevel", beforeStartingGameModel.GameDifficultyLevel.ToString());
-            HttpContext.Session.SetInt32("Score", 0); // Puanı sıfırla
+            HttpContext.Session.SetInt32("Score", 0);
 
             var model = new GameModel
             {
@@ -82,11 +70,11 @@ namespace numberGet.Controllers
 
             if (model.UserGuess == null)
             {
-                model.Message = "Lütfen bir sayı giriniz!";
+                model.Message = "PLEASE ENTER A NUMBER!";
             }
             else if (model.IsGameOver)
             {
-                model.Message = "Oyun bitti! Tekrar oynamak için yeniden başlatın.";
+                model.Message = "GAME OVER! RESTART TO PLAY AGAIN.";
             }
             else
             {
@@ -95,7 +83,7 @@ namespace numberGet.Controllers
                 bool isCorrect = model.UserGuess == secretNumber;
                 bool isFailed = remainingAttempts == 0 && !isCorrect;
 
-                // Puan hesaplama
+
                 int correctPoint = 0;
                 int wrongPenalty = 0;
 
@@ -114,7 +102,7 @@ namespace numberGet.Controllers
 
                 if (isCorrect)
                 {
-                    model.Message = "Tebrikler! Doğru tahmin ettiniz";
+                    model.Message = "CONGRATULATIONS! YOU GUESSED CORRECTLY.";
                     model.IsGameOver = true;
                     score += correctPoint;
                 }
@@ -122,21 +110,20 @@ namespace numberGet.Controllers
                 {
                     if (isFailed)
                     {
-                        model.Message = $"Üzgünüm, kaybettiniz! Doğru sayı: {secretNumber}";
+                        model.Message = $"SORRY, YOU LOST! THE CORRECT NUMBER WAS: {secretNumber}";
                         model.IsGameOver = true;
                         score -= wrongPenalty;
                     }
                     else
                     {
                         model.Message = model.UserGuess < secretNumber
-                            ? "Daha büyük bir sayı tahmin edin!"
-                            : "Daha küçük bir sayı tahmin edin!";
+                            ? "GUESS A HIGHER NUMBER!"
+                            : "GUESS A LOWER NUMBER!";
                         score -= wrongPenalty;
                     }
                 }
             }
 
-            // Session güncelle
             HttpContext.Session.SetInt32("RemainingAttempts", remainingAttempts);
             HttpContext.Session.SetInt32("Score", score);
 

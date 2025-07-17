@@ -19,7 +19,7 @@ namespace numberGet.FluentValidation
                 .EmailAddress().WithMessage("Please enter the valid email address");
             RuleFor(x => x.Password)
                 .NotEmpty().WithMessage("You must enter the password")
-                .MinimumLength(8).WithMessage("You must enter the at least 6 characters long");
+                .MinimumLength(8).WithMessage("You must enter the at least 8 characters long");
             RuleFor(x => x.ConfirmPassword).Equal(x => x.Password).WithMessage("Passwords are not equal");
         }
     }

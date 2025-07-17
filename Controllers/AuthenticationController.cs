@@ -44,14 +44,14 @@ namespace numberGet.Controllers
                 var user = await _authenticationService.GetUserByEmail(signInModel.Email);
                 if (user == null)
                 {
-                    return RedirectToAction("Home", "HomePage", new { errorMessage = "KULLANICI BULUNAMADI" });
+                    return RedirectToAction("Home", "HomePage", new { errorMessage = "USER NOT FOUND" });
                 }
                 else
                 {
                     return await CheckPassword(signInModel, user);
                 }
             }
-            return RedirectToAction("Home", "HomePage", new { errorMessage = "LÜTFEN BİLGİLERİNİZİ KONTROL EDİNİZ" });
+            return RedirectToAction("Home", "HomePage", new { errorMessage = "PLEASE CHECK YOUR INFORMATION." });
         }
 
         private async Task<IActionResult> CheckPassword(SignInModels signInModel, SignUpEntity user)
@@ -63,7 +63,7 @@ namespace numberGet.Controllers
             }
             else
             {
-                return RedirectToAction("Home", "HomePage", new { errorMessage = "GİRİŞ BAŞARISIZ" });
+                return RedirectToAction("Home", "HomePage", new { errorMessage = "LOGIN FAILED." });
             }
         }
     }

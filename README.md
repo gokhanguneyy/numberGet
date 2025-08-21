@@ -2,7 +2,7 @@
 
 ## Introduction  
 Welcome to the **NumberGuessGame** project!  
-This project is a fun and interactive number guessing game where users try to guess a randomly selected number. The game features different difficulty levels, a scoring system, and the ability for users to review their past game history. It is designed following modern software development practices.
+This project is a fun and interactive number guessing game where users try to guess a randomly selected number. The game features different difficulty levels and a scoring system. It is designed following modern software development practices.
 
 ## Project Overview  
 **NumberGuessGame** is a RESTful API developed using **.NET 8** with a layered architecture. It offers users the ability to:

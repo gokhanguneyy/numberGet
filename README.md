@@ -9,8 +9,6 @@ This project is a fun and interactive number guessing game where users try to gu
 
 - Play the game across three difficulty levels (easy, medium, hard)  
 - Earn points based on their performance in each round  
-- Review their game history and progress over time  
-- Experience a secure and robust gameplay experience using JWT-based authentication  
 
 ## Technologies Used  
 
@@ -20,7 +18,6 @@ This project leverages modern and reliable technologies to ensure high performan
 - **Entity Framework Core (Code First)** – Efficient data management with MySQL using a flexible ORM  
 - **MySQL** – A fast and reliable relational database solution  
 - **FluentValidation** – A powerful library for validating user input with clear and maintainable rules  
-- **JWT (JSON Web Tokens)** – Secure and stateless authentication mechanism  
 - **Azure** – Cloud deployment for scalability and accessibility  
 - **GitHub Actions** – Modern CI/CD pipeline automation for seamless integration and deployment  
 
